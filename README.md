@@ -13,11 +13,11 @@ This is a Java project built with Maven. The project is about player communicati
 
 1. Clone the repository:
 ```shell
-git clone <[repository-url](https://github.com/AmirSarrafzadeh/360T.git)>
+git clone https://github.com/AmirSarrafzadeh/360T.git
 ```
 2. Navigate to the project directory:
 ```shell
-cd <project-directory>
+cd 360T
 ```
 
 ## Usage
