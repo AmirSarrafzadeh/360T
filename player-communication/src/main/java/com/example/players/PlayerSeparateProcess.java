@@ -5,6 +5,11 @@ import java.net.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * The PlayerSeparateProcess class facilitates communication between two players,
+ * each running in a separate process. The class handles the setup of server and client
+ * sockets to send and receive messages based on the provided player names and port numbers.
+ */
 public class PlayerSeparateProcess {
     private String p1Name;
     private String p2Name;
@@ -15,6 +20,15 @@ public class PlayerSeparateProcess {
     // initialize the logger object for logging all the process
     private static final Logger logger = LoggerUtility.getLogger();
 
+    /**
+     * Constructor to initialize a player process.
+     *
+     * @param p1Name      Name of the first player
+     * @param p2Name      Name of the second player
+     * @param port        Port number for this player's server socket
+     * @param otherPort   Port number for the other player's server socket
+     * @param isInitiator Boolean flag to determine if this player is the initiator
+     */
     public PlayerSeparateProcess(String p1Name, String p2Name, int port, int otherPort, boolean isInitiator) {
         this.p1Name = p1Name;
         this.p2Name = p2Name;
@@ -23,6 +37,9 @@ public class PlayerSeparateProcess {
         this.isInitiator = isInitiator;
     }
 
+    /**
+     * Starts the player server and handles the sending and receiving of messages.
+     */
     public void start() {
         // Starting server socket to listen
         try (ServerSocket serverSocket = new ServerSocket(port)) {
@@ -64,7 +81,11 @@ public class PlayerSeparateProcess {
     }
 
 
-
+    /**
+     * Sends a message to the other player's server.
+     *
+     * @param message The message to send
+     */
     private void sendMessage(String message) {
         int attempts = 0;
         while (attempts < 3) {
@@ -91,6 +112,11 @@ public class PlayerSeparateProcess {
     }
 
 
+    /**
+     * Main method to start the player process based on the provided arguments.
+     *
+     * @param args Command-line arguments containing player names, port numbers, and initiator flag
+     */
     public static void main(String[] args) {
         if (args.length != 5) {
             System.out.println("Usage: java Player <p1Name> <p2Name> <port> <otherPort> <isInitiator>");
